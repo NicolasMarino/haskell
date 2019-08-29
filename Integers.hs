@@ -20,3 +20,9 @@ potenciaAlaN a b = a * potenciaAlaN a (b - 1)
 repetirString::String->Int->String
 repetirString s 1 = s
 repetirString s n = s ++ repetirString s (n-1)
+
+divisionEntera :: Int -> Int -> Int
+divisionEntera a b
+  | a == b = 1
+  | a > b = 1 + divisionEntera (a-b) b
+  | otherwise = 0
