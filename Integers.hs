@@ -26,3 +26,9 @@ divisionEntera a b
   | a == b = 1
   | a > b = 1 + divisionEntera (a-b) b
   | otherwise = 0
+
+resto :: Int -> Int -> Int
+resto a b
+  | a == b = 0
+  | a > b = resto (a-b) b
+  | otherwise = a
