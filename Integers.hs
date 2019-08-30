@@ -32,3 +32,9 @@ restoDivision a b
   | a == b = 0
   | a > b = restoDivision (a-b) b
   | otherwise = a
+
+imparesHastaN :: Int -> Int
+imparesHastaN n
+    | n <= 0 = 0
+    | (mod n 2) == 0 = imparesHastaN (n-1)
+    | otherwise = n + imparesHastaN (n-2)
