@@ -122,6 +122,6 @@ primerDivisorDos n = minimo_acotado (divisor n) 2 n
 --Intentando arreglar el primerDivisorDos si le paso 1
 --primerDivisorDosDos::Int->Int
 --primerDivisorDosDos n = minimo_acotado (\y -> case y of {1 -> (\x -> False);
-                                                       otherwise -> (divisor n);}) 2 n
+--                                                       otherwise -> (divisor n);}) 2 n
   
   
