@@ -87,14 +87,41 @@ sumgversiondos f a = (sumaGeneral (f) (0) (a))
 divisor::Int->Int->Bool
 divisor a b = (mod a b) == 0
 
--- Funcion que recibe 1 naturales,i>2que retorne el primer divisor de i que sea mayor que 1.
+-- Funcion que recibe 1 natural,i>2que retorne el primer divisor de i que sea mayor que 1. *(14)
 
-divisorMayorUno::Int->Int
-divisorMayorUno a = auxiliar a 2 
+primerDivisor::Int->Int
+primerDivisor a = auxiliar a 2 
 
 auxiliar::Int->Int->Int
 auxiliar a b
   |divisor a b = b
   |not(divisor a b) = auxiliar a (b+1)
 
---Usando el anterior, crear una funcion que determine si un numero es primo
+--Usando el anterior, crear una funcion que determine si un numero es primo (15)
+
+esPrimo::Int->Bool
+esPrimo a = primerDivisor a == a
+
+-- Que hace?
+--        Retorna el primer valor que cumple con el predicado
+-- Que retorna si ningun valo del intervalo cumple con el predicado?
+--        Retorna b + 1.
+
+--minimo_acotado (16)
+minimo_acotado::(Int->Bool)->Int->Int->Int
+minimo_acotado p a b
+            | a > b = a
+            | a <= b && p a = a
+            | a <= b && not(p a) = minimo_acotado p (a+1) b
+
+--Reprogramar 14 con el 16
+
+primerDivisorDos::Int->Int
+primerDivisorDos n = minimo_acotado (divisor n) 2 n
+
+--Intentando arreglar el primerDivisorDos si le paso 1
+--primerDivisorDosDos::Int->Int
+--primerDivisorDosDos n = minimo_acotado (\y -> case y of {1 -> (\x -> False);
+                                                       otherwise -> (divisor n);}) 2 n
+  
+  
