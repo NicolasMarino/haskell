@@ -98,14 +98,25 @@ pertenece (x:xs) a
     | a == x = True
     | otherwise = pertenece xs a
 
-cuantos::Eq a=>[a]->a->Int
-cuantos (x:xs) a
-    | xs == [] = 0
-    | a == x = 1 + cuantos xs a
-    | otherwise = cuantos xs a
+      
+-- dada una lista y un elemento retornar la cantidad de veces que aparece el elemento en la lista 
+contarPertenece::Eq a => [a]->a->Int
+contarPertenece [] a = 0
+contarPertenece (x:xs) a 
+    | a == x = 1 + (contarPertenece xs a)
+    | otherwise = (contarPertenece xs a)
 
-posicion::Eq a=>[a]->Int->a
-posicion (x:xs) a
-| xs == [] = 0
-| a == x = 1 + posicion xs a
-| otherwise = posicion xs a
+-- 11 dado un natural y una lista, retornar el elemento en la posicion representada por el natural.
+elementoDePosDada::Eq a => [a]->Int->a
+elementoDePosDada [] d = error"asd"
+elementoDePosDada (x:xs) d 
+            | d == 0 = x
+            | otherwise = (elementoDePosDada xs (d-1))
+
+-- 12 dado un elemento y una lista, retornar la posicion del elementoen la lista. Si el elemento no esta retornar el largo de la lista
+elementoDePosDada2::Eq a => [a]->a->Int
+elementoDePosDada2 [] a = 0
+elementoDePosDada2 (x:xs) a 
+               | a == x = 0
+               | otherwise = (1+(elementoDePosDada2 xs a)) 
+    
