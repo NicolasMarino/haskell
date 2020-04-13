@@ -14,3 +14,10 @@ cantidadNodos::Bintree a->Int
 cantidadNodos (Empty) = 0
 cantidadNodos (Node v1 a1 a2) = 1 + cantidadNodos (a1) + cantidadNodos (a2)
 
+preOrden:: Bintree a ->[a]
+preOrden(Empty)= []
+preOrden(Node v1 a1 a2) = v1 : (preOrden a1 ++ preOrden a2)
+
+inOrden:: Bintree a ->[a]
+inOrden(Empty)= []
+inOrden(Node v1 a1 a2) = v1 : inOrden a1 ++ preOrden a2
