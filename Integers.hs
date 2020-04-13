@@ -40,7 +40,23 @@ productoUsandoSuma::Int->Int->Int
 productoUsandoSuma x 1 = x
 productoUsandoSuma x y = x + productoUsandoSuma x (y - 1 )
 
+productoUsandoSuma::Int->Int->Int
+productoUsandoSuma x 1 = x
+productoUsandoSuma x y = x + productoUsandoSuma x (y - 1 )
+--division dos naturales usando resta
+divNresta::Int->Int->Int
+divNresta x y
+        | x == 0 = error "no se puede dividir entre 0"
+        | y < x  = 1 + (divNresta (x-y) y)
+        | x == y = 1
+        | otherwise = 0
 
+--resto dos naturales usando resta.
+restonresta::Int->Int->Int
+restonresta x y
+        | x == 0 = error "no se puede dividir entre 0"
+        | x < y = x
+        | y <= x  = divNresta (x-y) y
 --suma g
 sumg::(Int->Int)->Int->Int
 sumg f n
@@ -125,3 +141,17 @@ primerDivisorDos n = minimo_acotado (divisor n) 2 n
 --                                                       otherwise -> (divisor n);}) 2 n
   
   
+imparesMenoresN::Int->Int
+imparesMenoresN x 
+                | x <= 0 = 0
+                | (mod x 2) == 0 = imparesMenoresN (x-1)
+                | otherwise = x + imparesMenoresN (x-2)      
+
+                
+--la suma de los naturales y tales que a es menor o iugual que y e y es igual menor que b para a y b dados
+
+sumaNaturales::Int->Int->Int
+sumaNaturales x y
+            | (y > x) = x + sumaNaturales (x+1) y
+            | (x <= y) = x
+            | (y < x) = error "x tiene que ser mayor que y"
